@@ -1,0 +1,42 @@
+.page {
+  margin: 0 20px;
+  padding-top: 8px;
+}
+
+.page > a:first-child {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 22px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 10px;
+}
+
+.poster {
+  grid-row: span 10;
+  width: 200px;
+}
+
+.details h2 {
+  margin-top: 20px;
+}
+
+.additionalTitle {
+  margin-top: 16px;
+}
+
+.additionalNav {
+  display: block;
+  border-bottom: 1px solid #bbb;
+  padding: 0 0 12px 18px;
+}
+
+.additionalNav a {
+  display: list-item;
+  margin-bottom: 6px;
+}

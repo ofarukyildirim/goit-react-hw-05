@@ -13,20 +13,11 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
 
-  const backLinkRef = useRef(null);
-
-  const [backLink, setBackLink] = useState("/movies");
+  const backLinkRef = useRef(location.state?.from ?? "/movies");
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (!backLinkRef.current) {
-      backLinkRef.current = location.state?.from ?? "/movies";
-      setBackLink(backLinkRef.current);
-    }
-  }, [location]);
 
   useEffect(() => {
     const loadMovie = async () => {
@@ -52,7 +43,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={css.page}>
-      <Link to={backLink}>← Go back</Link>
+      <Link to={backLinkRef.current}>← Go back</Link>
 
       <div className={css.details}>
         {movie.poster_path && (
@@ -78,7 +69,6 @@ const MovieDetailsPage = () => {
 
       <nav className={css.additionalNav}>
         <NavLink to="cast">Cast</NavLink>
-
         <NavLink to="reviews">Reviews</NavLink>
       </nav>
 

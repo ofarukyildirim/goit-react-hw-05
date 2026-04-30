@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { fetchTrendingMovies } from "../../api";
+import MovieList from "../../components/MovieList/MovieList";
 import css from "./HomePage.module.css";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const location = useLocation();
 
   useEffect(() => {
     const loadTrending = async () => {
@@ -32,17 +30,9 @@ const HomePage = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <ul className={css.list}>
-      {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link
-            to={`/movies/${movie.id}`}
-            state={{ from: location.pathname + location.search }}>
-            {movie.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className={css.container}>
+      <MovieList movies={movies} />
+    </div>
   );
 };
 
